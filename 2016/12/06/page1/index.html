@@ -22,7 +22,8 @@ border-radius属性用来定义盒模型四角的弧度, 学习能力强的同�
 border-radius属性用来定义盒模型四角的弧度, 学习能力强的同学可以参考 CSS Backgrounds and Borders Module Level 3
 像我一样的 学渣 萌新请看这段~
 已经了解bo">
-<meta property="og:updated_time" content="2016-12-08T02:55:15.000Z">
+<meta property="og:image" content="http://oht8hl8he.bkt.clouddn.com/p1.jpeg">
+<meta property="og:updated_time" content="2016-12-08T08:05:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="你可能不了解的前端系列之CSS : border-radius">
 <meta name="twitter:description" content="相信大家在开发中都会经常使用到border-radius这个属性, 然而对于border-radius: 50%; 或者
@@ -30,6 +31,7 @@ border-radius属性用来定义盒模型四角的弧度, 学习能力强的同�
 border-radius属性用来定义盒模型四角的弧度, 学习能力强的同学可以参考 CSS Backgrounds and Borders Module Level 3
 像我一样的 学渣 萌新请看这段~
 已经了解bo">
+<meta name="twitter:image" content="http://oht8hl8he.bkt.clouddn.com/p1.jpeg">
   
     <link rel="alternative" href="/atom.xml" title="闲云野鹤" type="application/atom+xml">
   
@@ -49,7 +51,7 @@ border-radius属性用来定义盒模型四角的弧度, 学习能力强的同�
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="http://chuantu.biz/t5/44/1481100417x1919961708.jpg" class="js-avatar">
+			<img src="http://oht8hl8he.bkt.clouddn.com/zhushou.jpg" class="js-avatar">
 		</a>
 
 		<hgroup>
@@ -104,7 +106,7 @@ border-radius属性用来定义盒模型四角的弧度, 学习能力强的同�
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="http://chuantu.biz/t5/44/1481100417x1919961708.jpg" class="js-avatar">
+				<img src="http://oht8hl8he.bkt.clouddn.com/zhushou.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author">李日浩</h1>
@@ -164,12 +166,61 @@ border-radius属性用来定义盒模型四角的弧度, 学习能力强的同�
 <p>像我一样的<span style="text-decoration: line-through;line-height: 20px; color: #999;font-size:14px"> 学渣 </span>萌新请看这段~</p>
 <p><a href="#advance">已经了解border-radius基本原理的同学请点这里</a></p>
 <p>border-radius 是 border-top-left-radius, border-top-right-radius, border-bottom-right-radius, border-bottom-left-radius四个属性的简写,用于同时设置四边的圆角。</p>
+<p>我们先从border-<em>-</em>-radius开始。</p>
+<p>border-<em>-</em>-radius用来设置 左上、右上、右下、左下四个角的圆角</p>
+<p>border-<em>-</em>-radius接收两个值,分别用来设置圆角弧度的<font color="red">水平半径</font>和<font color="red">垂直半径</font></p>
+<p>两个值的类型可以是具体的长度单位也可以是百分比:</p>
 <p>让我们举个栗子🌰 来看看发生了什么</p>
-<pre><code>&lt;div style=&quot;height: 100px;width: 100px;background: pink;border-radius: 20px;&quot;&gt;&lt;/div&gt;
+<pre><code>&lt;div style=&quot;height: 100px;width: 100px;background: pink;border-top-left-radius: 50px 25px;&quot;&gt;&lt;/div&gt;
 </code></pre><p>那么上面的DIV就是如下的效果:</p>
-<section><div id="myDiv" style="height: 100px;width: 100px;background: pink;border-radius: 20px;"></div></section>
+<section><div style="height: 100px;width: 100px;background: pink;border-top-left-radius: 50px 25px;"></div></section>
 
-<p>我们来图解一下它的圆角是如何计算的</p>
+<p>我们来图解一下它的圆角是如何计算的。</p>
+<p><img src="http://oht8hl8he.bkt.clouddn.com/p1.jpeg" alt=""></p>
+<p>百分比的话 ,水平半径会按照BOX的宽度得到计算值, 垂直半径会按照BOX的高度会得到计算之</p>
+<pre><code>&lt;div style=&quot;height: 100px;width: 100px;background: pink;border-top-left-radius: 50% 25%;&quot;&gt;&lt;/div&gt;
+</code></pre><p>和上面的DIV会有一样的效果</p>
+<div style="height: 100px;width: 100px;background: pink;border-top-left-radius: 50% 25%;"></div>
+
+<p>border-radius接受四个值, 用来依次设置左上、右上、右下、左下四个圆角的水平半径和垂直半径, <font color="red">每个角只能接受一个值,意味着使用border-radius设置圆角的话水平半径和垂直半径只能相等(深刻理解)</font></p>
+<pre><code>&lt;div style=&quot;height: 100px;width: 100px;background: pink;border-radius: 25px 10px 15px 30px;&quot;&gt;&lt;/div&gt;
+</code></pre><div style="height: 100px;width: 100px;background: pink;border-radius: 25px 10px 15px 30px;"></div>
+
+
+<h2 id="本篇重点从这里开始～"><a href="#本篇重点从这里开始～" class="headerlink" title="本篇重点从这里开始～"></a><p id="advance"><strong>本篇重点从这里开始～</strong></p></h2><p>上面已经有了border-radius的基本使用方法介绍, 下面我们来看一些特殊的情况。</p>
+<h2 id="Case-1"><a href="#Case-1" class="headerlink" title="Case 1"></a>Case 1</h2><p>如果我的盒子具有border, 那么border-radius该如何计算呢？</p>
+<p>W3C<span style="text-decoration: line-through;line-height: 20px; color: #999;font-size:14px">爸爸</span>标准定义,当盒子同时存在border和border-radius, border的内外弧度是分开计算的(<span style="text-decoration: line-through;line-height: 20px; color: #999;font-size:14px">如果不知道什么是border请放弃前端</span>);</p>
+<p>其内侧弧度(以下简称内弧度)的值为border-radius设置的水平半径、垂直半径减去border的宽度,当其值为负的时, 取之为0;</p>
+<p>直男画图困难系列,就不画图了,大家看下面的例子:</p>
+<p>给出如下例子(均采用border-sizing: border-box;)</p>
+<pre><code>&lt;div style=&quot;height: 70px;width: 70px;border-top:solid 10px;border-left: solid 10px; border-bottom:solid 10px;border-right:10px solid;background: pink;border-top-left-radius: 50px 25px;&quot;&gt;&lt;/div&gt;
+</code></pre><div style="height: 70px;width: 70px;border-top:solid 10px;border-left: solid 10px; border-bottom:solid 10px;border-right:10px solid;background: pink;border-top-left-radius: 50px 25px;"></div>
+
+<p>当border-left 为51px的时候, 50-51为负,水平半径为0,所以失去了弧度</p>
+<pre><code>&lt;div style=&quot;height: 70px;width: 70px;border-top:solid 10px;border-left: solid 10px; border-bottom:solid 10px;border-right:10px solid;background: pink;border-top-left-radius: 50px 25px;&quot;&gt;&lt;/div&gt;
+</code></pre><div style="height: 70px;width: 70px;border-top:solid 10px;border-left: solid 51px; border-bottom:solid 10px;border-right:10px solid;background: pink;border-top-left-radius: 50px 25px;"></div>
+
+
+<h2 id="装逼时间到"><a href="#装逼时间到" class="headerlink" title="装逼时间到"></a>装逼时间到</h2><p>下面这种border-radius, 相信大家会经常使用:</p>
+<pre><code>&lt;div style=&quot;height: 50px;width: 100px;background: pink;border-radius: 25px;&quot;&gt;&lt;/div&gt;
+</code></pre><div style="height: 50px;width: 100px;background: pink;border-radius: 25px;"></div>
+
+<p>那么现在我会告诉你, 所有在这里设置超过25px的,最终都会计算成这个图形的样子。</p>
+<div style="height: 50px;width: 100px;background: pink;border-radius: 100000px;"></div>
+
+<p>在W3C中对border-radius最终的计算值有一个衰减算法,具体如下:</p>
+<p>Let f = min(Li/Si), where i ∈ {top, right, bottom, left}, Si is the sum of the two corresponding radii of the corners on side i, and Ltop = Lbottom = the width of the box, and Lleft = Lright = the height of the box. If f &lt; 1, then all corner radii are reduced by multiplying them by f.</p>
+<p>大致翻译一下, 就是当你的垂直半径和水平半径之和大于盒子宽高中最小的那一个值的时候，垂直半径和水平半径最后会乘以一个值, 值为宽高中最小的值除以水平半径与垂直半径之和(<span style="text-decoration: line-through;line-height: 20px; color: #999;font-size:14px">真的不是绕口令吗</span>)</p>
+<p>那么下面给出两个推论：</p>
+<p>推论1 : 垂直半径和水平半径之和大于盒子宽高中最小的那一个值的, 且垂直半径与水平半径的比越接近1,则最终的计算值越接近垂直半径和水平半径之和大于盒子宽高中最小的那一个值的一半</p>
+<p>证明: 设垂直半径为V, 水平半径为h0, 宽高为w、h</p>
+<p>value(ho)　= limit(v→h0) ho*min(h, w)/ho + v<br>　　　　　　=  ho*min(h,w)/2ho<br>　　　　　　=  min(h, w)/2</p>
+<p>推论2 : 垂直半径和水平半径之和大于盒子宽高中最小的那一个值的, 且垂直半径与水平半径一方为另一方的高阶无穷小,则弧度为0</p>
+<p>value(ho)　= limit(v → ∞) ho*min(h, w)/ho + v<br>　　　　　　= 0</p>
+<p>value(v)　= limit(v → ∞) v*min(h, w)/ho + v<br>　　　　　　= min(h,w);</p>
+<p>所以: 弧度为0</p>
+<h2 id="最终结论"><a href="#最终结论" class="headerlink" title="最终结论"></a>最终结论</h2><p>给我一个DIV, 我可以给你画出全世界 (<span style="text-decoration: line-through;line-height: 20px; color: #999;font-size:14px">拖出去打死</span>)</p>
+<p>(完)</p>
 
       
 
@@ -183,8 +234,13 @@ border-radius属性用来定义盒模型四角的弧度, 学习能力强的同�
             <span class="tooltip-content">
               <span class="tooltip-text">
                 <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>两块钱买不了吃亏买不了上当~<i class="icon icon-quo-right"></i></p>
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>一块钱买不了吃亏买不了上当~<i class="icon icon-quo-right"></i></p>
                   <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://oht8hl8he.bkt.clouddn.com/dashang.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
                     
                     
                   </div>
