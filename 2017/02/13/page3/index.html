@@ -6,34 +6,36 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>0.1+0.2 ≠ 0.3 | 闲云野鹤</title>
+  <title>记 GOOGLE V8 build 过程 | 闲云野鹤</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="0.1+0.2 ≠ 0.3在初学js时，我们可能听说看到遇到过这种情况 ：
-0.1 + 0.2 != 0.3 ? alert(&amp;quot;u&amp;apos;r SB!&amp;quot;) : alert(&amp;quot;right!&amp;quot;);
-
-0.1 + 0.7 != 0.8 ? alert(&amp;quot;u&amp;apos;r SB!&amp;quot;) : alert(&amp;quot;right!&amp;quot;);
-然">
+  <meta name="description" content="操作系统: MAC OS X
+所需工具：git
+翻墙工具
+基本照着google文档进行就可以，一些小阻碍纪录下来：官方文档
+1.SOCK5 翻墙时候使用git 设置代理到 127.0.0.1:1080 时候依然time out，后改成vpn成功clone depot tools
+2.tools/dev/v8gen.py x64.release 提示错误
+Hint: You can raise ve">
 <meta property="og:type" content="article">
-<meta property="og:title" content="0.1+0.2 ≠ 0.3">
-<meta property="og:url" content="http://yoursite.com/2017/01/12/page2/index.html">
+<meta property="og:title" content="记 GOOGLE V8 build 过程">
+<meta property="og:url" content="http://yoursite.com/2017/02/13/page3/index.html">
 <meta property="og:site_name" content="闲云野鹤">
-<meta property="og:description" content="0.1+0.2 ≠ 0.3在初学js时，我们可能听说看到遇到过这种情况 ：
-0.1 + 0.2 != 0.3 ? alert(&amp;quot;u&amp;apos;r SB!&amp;quot;) : alert(&amp;quot;right!&amp;quot;);
-
-0.1 + 0.7 != 0.8 ? alert(&amp;quot;u&amp;apos;r SB!&amp;quot;) : alert(&amp;quot;right!&amp;quot;);
-然">
-<meta property="og:image" content="http://7xs08z.com1.z0.glb.clouddn.com/ljjs.png">
-<meta property="og:image" content="http://7xs08z.com1.z0.glb.clouddn.com/fac1.png">
-<meta property="og:image" content="http://7xs08z.com1.z0.glb.clouddn.com/fac3.png">
-<meta property="og:updated_time" content="2017-01-12T07:51:05.000Z">
+<meta property="og:description" content="操作系统: MAC OS X
+所需工具：git
+翻墙工具
+基本照着google文档进行就可以，一些小阻碍纪录下来：官方文档
+1.SOCK5 翻墙时候使用git 设置代理到 127.0.0.1:1080 时候依然time out，后改成vpn成功clone depot tools
+2.tools/dev/v8gen.py x64.release 提示错误
+Hint: You can raise ve">
+<meta property="og:updated_time" content="2017-02-13T11:38:37.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="0.1+0.2 ≠ 0.3">
-<meta name="twitter:description" content="0.1+0.2 ≠ 0.3在初学js时，我们可能听说看到遇到过这种情况 ：
-0.1 + 0.2 != 0.3 ? alert(&amp;quot;u&amp;apos;r SB!&amp;quot;) : alert(&amp;quot;right!&amp;quot;);
-
-0.1 + 0.7 != 0.8 ? alert(&amp;quot;u&amp;apos;r SB!&amp;quot;) : alert(&amp;quot;right!&amp;quot;);
-然">
-<meta name="twitter:image" content="http://7xs08z.com1.z0.glb.clouddn.com/ljjs.png">
+<meta name="twitter:title" content="记 GOOGLE V8 build 过程">
+<meta name="twitter:description" content="操作系统: MAC OS X
+所需工具：git
+翻墙工具
+基本照着google文档进行就可以，一些小阻碍纪录下来：官方文档
+1.SOCK5 翻墙时候使用git 设置代理到 127.0.0.1:1080 时候依然time out，后改成vpn成功clone depot tools
+2.tools/dev/v8gen.py x64.release 提示错误
+Hint: You can raise ve">
   
     <link rel="alternative" href="/atom.xml" title="闲云野鹤" type="application/atom+xml">
   
@@ -147,60 +149,69 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-page2" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-page3" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      0.1+0.2 ≠ 0.3
+      记 GOOGLE V8 build 过程
     </h1>
   
 
-        <a href="/2017/01/12/page2/" class="archive-article-date">
-  	<time datetime="2017-01-12T07:35:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-12</time>
+        <a href="/2017/02/13/page3/" class="archive-article-date">
+  	<time datetime="2017-02-13T11:36:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-13</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="0-1-0-2-≠-0-3"><a href="#0-1-0-2-≠-0-3" class="headerlink" title="0.1+0.2 ≠ 0.3"></a>0.1+0.2 ≠ 0.3</h1><p>在初学js时，我们可能听说看到遇到过这种情况 ：</p>
-<pre><code>0.1 + 0.2 != 0.3 ? alert(&quot;u&apos;r SB!&quot;) : alert(&quot;right!&quot;);
+        <p>操作系统: MAC OS X</p>
+<p>所需工具：git</p>
+<p>翻墙工具</p>
+<p>基本照着google文档进行就可以，一些小阻碍纪录下来：<a href="https://github.com/v8/v8/wiki/Building%20from%20Source" target="_blank" rel="external">官方文档</a></p>
+<p>1.SOCK5 翻墙时候使用git 设置代理到 127.0.0.1:1080 时候依然time out，后改成vpn成功clone depot tools</p>
+<p>2.tools/dev/v8gen.py x64.release 提示错误</p>
+<pre><code>Hint: You can raise verbosity (-vv) to see the output of failed commands.
 
-0.1 + 0.7 != 0.8 ? alert(&quot;u&apos;r SB!&quot;) : alert(&quot;right!&quot;);
-</code></pre><p>然后你一脸蒙x的望着屏幕上的U’r SB心想你才是SB你全家都是SB，辣鸡语言。</p>
-<p><img src="http://7xs08z.com1.z0.glb.clouddn.com/ljjs.png" alt=""></p>
-<p>其实，所有采用IEEE754双精度浮点数来编码小数的语言，都一定存在类似问题:</p>
-<pre><code>#include &lt;stdio.h&gt;
-main()
-{
-    printf(&quot;%0.17f\n&quot;, 0.1+0.2);
-}
-
-#save as test.c
-
-$ gcc -o test test.c
-
-$ ./test
-
-0.30000000000000004
-</code></pre><p>在一年前，我曾经坚定不移认为这是”JS浮点数精度不够导致的”，但却一直疏于探求其根本原因。</p>
-<h4 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h4><p>我们最常使用的十进制编码方式，由最基础的[0,1,2,3,4,5,6,7,8,9] 这九个符号组成。仅由有限个0-9和符号”.”所能编码的数字是离散的，也就是不连续的。比如 1/3这个数字,可以由0.33333….333的循环来表示，后面的数字3越多，我们所编码的数字越接近于1/3。</p>
-<p>对于十进制小数来说, 我们可以用如下方法来表示一个小数：</p>
-<p>例如： </p>
-<p><img src="http://7xs08z.com1.z0.glb.clouddn.com/fac1.png" alt=""></p>
-<p>那么, 1/3可以用下面级数来表示</p>
-<p><img src="http://7xs08z.com1.z0.glb.clouddn.com/fac3.png" alt=""><br>（图误   10^n/3）</p>
-<p>但是如果使用六进制, 1/3就可以用六进制的 0.2(6)来表示。</p>
-<h4 id="科学技术法"><a href="#科学技术法" class="headerlink" title="科学技术法"></a>科学技术法</h4><p>自行百度百科吧…</p>
-<h4 id="IEEE754"><a href="#IEEE754" class="headerlink" title="IEEE754"></a>IEEE754</h4><p>也不是两句话可以解释清楚的。。。自行百度比较清楚</p>
-<h4 id="根本原因"><a href="#根本原因" class="headerlink" title="根本原因"></a>根本原因</h4><p>0.1+0.2 ≠ 0.3的根本原因是因为 0.1与0.2在二进制中都无法用有限的01序列编码。</p>
-<p>0.1(10) = 0.00011001100110011…(循环0011)</p>
-<p>0.2(10) = 0.0011001100110011…(循环0011)</p>
-<p>但是IEEE规定尾数位最多为52位（＋1隐藏位共53位）, 所以 00011001100110011…(循环0011) 只能近似表示十进制的0.1， 同理  十进制的0.2也是，于是</p>
-<p>0.00110011001100110011001100110011001100110011001100110011＋+ 0.00110011001100110011001100110011001100110011001100110011＝0.01001100110011001100110011001100110011001100110011001100</p>
-<p>即为十进的0.30000000000000004</p>
+Traceback (most recent call last):
+File &quot;tools/dev/v8gen.py&quot;, line 304, in &lt;module&gt;
+sys.exit(gen.main())
+File &quot;tools/dev/v8gen.py&quot;, line 298, in main
+    return self._options.func()
+File &quot;tools/dev/v8gen.py&quot;, line 166, in cmd_gen
+    gn_outdir,
+File &quot;tools/dev/v8gen.py&quot;, line 208, in _call_cmd
+    stderr=subprocess.STDOUT,
+File &quot;/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/subprocess.py&quot;, line 573, in check_output
+    raise CalledProcessError(retcode, cmd, output=output)
+    subprocess.CalledProcessError: Command &apos;[&apos;/usr/bin/python&apos;, &apos;-u&apos;, &apos;tools/mb/mb.py&apos;, &apos;gen&apos;, &apos;-f&apos;, &apos;infra/mb/mb_config.pyl&apos;, &apos;-m&apos;, &apos;developer_default&apos;, &apos;-b&apos;, &apos;x64.release&apos;, &apos;out.gn/x64.release&apos;]&apos; returned non-zero exit status 1
+</code></pre><p>此处隐藏了python子过程细节，使用 </p>
+<pre><code>tools/dev/v8gen.py x64.release -vv
+</code></pre><p>发现缺少mac sdk</p>
+<pre><code>[Errno 2] No such file or directory: &apos;/Library/Developer/CommandLineTools/Platforms/MacOSX.platform/Developer/SDKs&apos;
+</code></pre><p>查了一下mac sdk 大致包含了触控、TCP/IP等接口，不知编译v8为啥需要</p>
+<p>于是怒下xCode，再次执行</p>
+<pre><code>tools/dev/v8gen.py x64.release -vv
+</code></pre><p>提示</p>
+<pre><code>Agreeing to the Xcode/iOS license requires admin privileges, please re-run as root via sudo.
+</code></pre><p>于是</p>
+<pre><code>sudo tools/dev/v8gen.py x64.release -vv
+</code></pre><p>提示</p>
+<pre><code>You have not agreed to the Xcode license agreements, please run &apos;xcodebuild -license&apos; (for user-level acceptance) or &apos;sudo xcodebuild -license&apos; (for system-wide acceptance) from within a Terminal window to review and agree to the Xcode license agreements.
+</code></pre><p>于是</p>
+<pre><code>sudo xcodebuild -license
+</code></pre><p>根据提示完成agree</p>
+<p>然后再次release</p>
+<p>提示</p>
+<pre><code>Done. Made 88 targets from 55 files in 4264ms
+</code></pre><p>之后</p>
+<pre><code>tools/run-tests.py --gn
+&gt;&gt;&gt; Latest GN build found is x64.release
+&gt;&gt;&gt; Running tests for x64.release
+[11:25|% 100|+ 27708|-   0]: Done
+</code></pre><p>完毕～</p>
 
       
 
@@ -290,7 +301,7 @@ $ ./test
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/01/12/page2/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/02/13/page3/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -304,18 +315,9 @@ $ ./test
   
 <nav id="article-nav">
   
-    <a href="/2017/02/13/page3/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          记 GOOGLE V8 build 过程
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/12/06/page1/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">你可能不了解的前端系列之CSS : border-radius</div>
+    <a href="/2017/01/12/page2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">0.1+0.2 ≠ 0.3</div>
       <i class="icon-circle-right"></i>
     </a>
   

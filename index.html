@@ -129,6 +129,100 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-page3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/13/page3/">记 GOOGLE V8 build 过程</a>
+    </h1>
+  
+
+        <a href="/2017/02/13/page3/" class="archive-article-date">
+  	<time datetime="2017-02-13T11:36:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-13</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>操作系统: MAC OS X</p>
+<p>所需工具：git</p>
+<p>翻墙工具</p>
+<p>基本照着google文档进行就可以，一些小阻碍纪录下来：<a href="https://github.com/v8/v8/wiki/Building%20from%20Source" target="_blank" rel="external">官方文档</a></p>
+<p>1.SOCK5 翻墙时候使用git 设置代理到 127.0.0.1:1080 时候依然time out，后改成vpn成功clone depot tools</p>
+<p>2.tools/dev/v8gen.py x64.release 提示错误</p>
+<pre><code>Hint: You can raise verbosity (-vv) to see the output of failed commands.
+
+Traceback (most recent call last):
+File &quot;tools/dev/v8gen.py&quot;, line 304, in &lt;module&gt;
+sys.exit(gen.main())
+File &quot;tools/dev/v8gen.py&quot;, line 298, in main
+    return self._options.func()
+File &quot;tools/dev/v8gen.py&quot;, line 166, in cmd_gen
+    gn_outdir,
+File &quot;tools/dev/v8gen.py&quot;, line 208, in _call_cmd
+    stderr=subprocess.STDOUT,
+File &quot;/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/subprocess.py&quot;, line 573, in check_output
+    raise CalledProcessError(retcode, cmd, output=output)
+    subprocess.CalledProcessError: Command &apos;[&apos;/usr/bin/python&apos;, &apos;-u&apos;, &apos;tools/mb/mb.py&apos;, &apos;gen&apos;, &apos;-f&apos;, &apos;infra/mb/mb_config.pyl&apos;, &apos;-m&apos;, &apos;developer_default&apos;, &apos;-b&apos;, &apos;x64.release&apos;, &apos;out.gn/x64.release&apos;]&apos; returned non-zero exit status 1
+</code></pre><p>此处隐藏了python子过程细节，使用 </p>
+<pre><code>tools/dev/v8gen.py x64.release -vv
+</code></pre><p>发现缺少mac sdk</p>
+<pre><code>[Errno 2] No such file or directory: &apos;/Library/Developer/CommandLineTools/Platforms/MacOSX.platform/Developer/SDKs&apos;
+</code></pre><p>查了一下mac sdk 大致包含了触控、TCP/IP等接口，不知编译v8为啥需要</p>
+<p>于是怒下xCode，再次执行</p>
+<pre><code>tools/dev/v8gen.py x64.release -vv
+</code></pre><p>提示</p>
+<pre><code>Agreeing to the Xcode/iOS license requires admin privileges, please re-run as root via sudo.
+</code></pre><p>于是</p>
+<pre><code>sudo tools/dev/v8gen.py x64.release -vv
+</code></pre><p>提示</p>
+<pre><code>You have not agreed to the Xcode license agreements, please run &apos;xcodebuild -license&apos; (for user-level acceptance) or &apos;sudo xcodebuild -license&apos; (for system-wide acceptance) from within a Terminal window to review and agree to the Xcode license agreements.
+</code></pre><p>于是</p>
+<pre><code>sudo xcodebuild -license
+</code></pre><p>根据提示完成agree</p>
+<p>然后再次release</p>
+<p>提示</p>
+<pre><code>Done. Made 88 targets from 55 files in 4264ms
+</code></pre><p>之后</p>
+<pre><code>tools/run-tests.py --gn
+&gt;&gt;&gt; Latest GN build found is x64.release
+&gt;&gt;&gt; Running tests for x64.release
+[11:25|% 100|+ 27708|-   0]: Done
+</code></pre><p>完毕～</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/tag-js/">tag-js</a>
+	</div>
+
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-page2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
