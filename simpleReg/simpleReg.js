@@ -7,7 +7,7 @@ function SimpleRegEngine(){
     this.metaSet = {"*":"", ".":""};
 }
 
-
+// 去掉初始头部的"."或者"*"元字符
 SimpleRegEngine.prototype.setStartChartAndStatus = function(){
     var i, reg = this.reg;
     this.dotLength = 0;
@@ -29,10 +29,12 @@ SimpleRegEngine.prototype.setStartChartAndStatus = function(){
     }
 }
 
+
 SimpleRegEngine.prototype.isMetaChar = function(char){
    return char in this.metaSet ? true : false;
 }
 
+//去掉尾部的"*"元字符
 SimpleRegEngine.prototype.trim = function(){
     var i;
     for(i = this.reg.length; i >= 0 ; i--){
@@ -44,7 +46,7 @@ SimpleRegEngine.prototype.trim = function(){
 
 SimpleRegEngine.prototype.match = function(str,reg){
 
-    var strIndex;
+    var strIndex, result;
 
     if (!str || !reg) return false;
 
@@ -56,7 +58,8 @@ SimpleRegEngine.prototype.match = function(str,reg){
 
     for (strIndex = this.dotLength; strIndex < this.str.length; strIndex++){
         if (this.str.charAt(strIndex) == this.startChart){
-            var result = this.beginMatch(strIndex);
+            // 如果和正则的第一个字符匹配上，则开始匹配
+            result = this.beginMatch(strIndex);
             if (result !== false){
                 return true;
             }
