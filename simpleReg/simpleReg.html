@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        li{
+            width: 300px;
+            position: relative;
+        }
+        #trueResult li span:last-child, #falseResult li span:last-child{
+            position: absolute;
+            height: 100%;
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <p>testString = 'abbccdef'</p>
+    <ul id = "trueResult">
+        
+    </ul>
+    <hr>
+    <ul id = "falseResult">
+
+    </ul>
+</body>
+<script>
+
+ window.onload = printSimpleRegEngineTestResult;
+
+function printSimpleRegEngineTestResult(){
+
+    var trueArr = ['.', '*', '....', '****', '.bbccdef', 'abbccde.', 'ab.ccde', 'ab..cdef', '*cdef', 'abbc*', 'ab*ef'];
+    var falseArr = ['', '.........', 'abbccdef.','.abbccdef','cccdef', '*cccdef', 'abbccc*', 'abbc*ef.']
+    var testString = 'abbccdef';
+    var simpleRegEngine = new SimpleRegEngine(),
+            trueResultUl = document.getElementById('trueResult'),
+            falseResultUl =  document.getElementById('falseResult'),
+            result,trueHTML = '',falseHTML = '';
+
+    console.log(["test String is :", testString].join(''));
+
+    trueArr.forEach(function(e){
+        var result = simpleRegEngine.match(testString, e);
+        trueHTML += '<li><span>reg : ' + e + '</span><span>result:' + result + '</span></li>';
+    })
+
+    falseArr.forEach(function(e){
+        var result = simpleRegEngine.match(testString, e);
+        falseHTML += '<li><span>reg : ' + e + '</span><span>result:' + result + '</span></li>';
+    })
+
+    trueResultUl.innerHTML = trueHTML;
+    falseResultUl.innerHTML = falseHTML;
+}
+
+
+
+function SimpleRegEngine(){
+    this.reg;
+    this.str;
+    this.startChart;
+    this.startStatus;
+    this.dotLength;
+    this.metaSet = {"*":"", ".":""};
+}
+
+
+SimpleRegEngine.prototype.setStartChartAndStatus = function(){
+    var i, reg = this.reg;
+    this.dotLength = 0;
+
+    for (i = 0; i < reg.length; i++){
+        if (this.isMetaChar(reg.charAt(i))){
+            if ((reg.charAt(i)) == "*"){
+                this.reg = this.reg.replace("*","");
+            }
+            else if ((reg.charAt(i)) == "."){
+                this.dotLength += 1;
+                this.reg = this.reg.replace(".","")
+            }
+        }
+        else{
+            this.startChart = reg.charAt(i);
+            break;
+        }
+    }
+}
+
+SimpleRegEngine.prototype.isMetaChar = function(char){
+   return char in this.metaSet ? true : false;
+}
+
+SimpleRegEngine.prototype.trim = function(){
+    var i;
+    for(i = this.reg.length; i >= 0 ; i--){
+        if (this.reg.charAt(i) == '*'){
+            this.reg = this.reg.subString(0, this.reg.length - 1);
+        }
+    }
+}
+
+SimpleRegEngine.prototype.match = function(str,reg){
+
+    var strIndex;
+
+    if (!str || !reg) return false;
+
+    this.reg = reg;
+    this.str = str
+    this.setStartChartAndStatus();
+    
+    if ((!this.reg && this.dotLength <= str.length) || (!this.reg && reg.dotLength == 0)) return true;
+
+    for (strIndex = this.dotLength; strIndex < this.str.length; strIndex++){
+        if (this.str.charAt(strIndex) == this.startChart){
+            var result = this.beginMatch(strIndex);
+            if (result !== false){
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+SimpleRegEngine.prototype.beginMatch = function(strIndex){
+    var regIndex, allFlag, i;
+    i = strIndex + 1;
+
+    for (regIndex = 1; regIndex < this.reg.length;regIndex++){
+        switch (this.reg.charAt(regIndex)){
+            case "." : 
+                if (!this.str.charAt(i)){
+                    return false;
+                }
+                i++;
+                break;
+            case "*" :
+                allFlag = true;
+                break;
+            default:
+                if (allFlag == true){
+                    for (i; i < this.str.length; i++){
+                        if (this.str.charAt(i) == this.reg.charAt(regIndex)){
+                            allFlag = false;
+                            i++;
+                            break;
+                        }
+                    }
+
+                    if (allFlag == true){
+                        return false;
+                    }
+                }
+                else{
+                    if (this.str.charAt(i) != this.reg.charAt(regIndex)){
+                        return false
+                    }else{
+                        i++;
+                    }
+                }
+        }
+    }
+}
+</script>
+</html>
